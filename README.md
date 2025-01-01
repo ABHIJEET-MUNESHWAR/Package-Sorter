@@ -35,3 +35,56 @@ Implement the function **`sort(width, height, length, mass)`** (units are centim
     - Code quality.
     - Handling edge cases and inputs.
     - Test coverage.
+
+---
+
+## Solution
+
+The solution is written in Golang considering concurrency, modular design, unit test cases in mind.
+
+### How it works
+1. Concurrency: The `main.go` file uses Goroutines to process multiple packages concurrently. The results are sent to a channel to be collected later.
+2. Modular Design:
+   1. `sorter.go` contains the main logic.
+   2. `utils.go` provides reusable helper functions, such as CalculateVolume.
+3. Unit Testing: The `sorter_test.go` file tests all scenarios:
+   1. STANDARD
+   2. SPECIAL
+   3. REJECTED
+4. Channel Buffering: The channel in main.go is buffered to avoid deadlocks during Goroutine execution.
+
+### Build the project
+Run the following command to build the project:
+
+```go build -o package_sorter```
+
+This compiles the project into an executable file named `package_sorter` (or `package_sorter.exe` on Windows).
+
+### Run the Project
+After building, run the executable:
+
+```./package_sorter```
+
+You should see the output similar to this:
+
+```
+STANDARD
+SPECIAL
+REJECTED
+STANDARD
+```
+
+### Run Unit Tests
+To verify the logic with the provided unit tests:
+
+```go test ./sorter -v```
+
+You’ll see an output similar to this:
+
+```
+=== RUN   TestSort
+--- PASS: TestSort (0.00s)
+PASS
+ok      github.com/ABHIJEET-MUNESHWAR/Package-Sorter/sorter     0.595s
+
+```
